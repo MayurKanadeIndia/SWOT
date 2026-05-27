@@ -150,3 +150,9 @@ Production Use : > Always know where you are.
 > bat journal.md
 
 ![alt text](images/bat_journal.PNG)
+
+---
+
+##### More Detail Journaling
+
+![alt text](images/journal_md_in_details.PNG)
