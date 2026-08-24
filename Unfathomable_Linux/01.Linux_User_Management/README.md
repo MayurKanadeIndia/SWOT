@@ -177,6 +177,11 @@ The line `swami P 2026-04-05 0 99999 7 -1` contains seven specific fields of inf
 
 > `sudo usermod -s /bin/bash -c 'Lauren H.' lauren`
 
+#### The lauren used no logged in with bash shell see the below outputs
+
+> ![alt text](Images/lauren_modify_1.PNG)
+> ![alt text](Images/lauren_modify_2.PNG)
+
 ### Add user `lauren` to secondary group `docker`
 
 > `sudo usermod -aG docker lauren`
