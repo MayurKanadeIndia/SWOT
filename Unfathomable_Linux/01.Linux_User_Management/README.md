@@ -207,3 +207,78 @@ Example:
   ![alt text](Images/userdel_example.PNG)
 
 ---
+
+## How Group Works on the Linux Systems?
+
+### Why we do need groups on Linux Systems?
+
+#### `They help us with` :
+
+- Organizing users with similar access rights.
+- Simplifying permission management.
+- Enhancing collaboration and resource sharing.
+- Controlling access to files and directories.
+- Strengthening system security.
+
+### How do Group Work?
+
+- Each user has a primary group and zero to many secondary groups.
+- Primary Group:
+  - Stored in /etc/passwd
+  - Default ownership for new files.
+- We can test this:
+- touch file.txt
+- ls -al file.txt
+
+---
+
+### Primary Group Example `Associated With the User`
+
+- Suppose I logged in with the created user `lauren`.
+- When we crate any new user the system will assign a default group to every user.
+- > cat /etc/passwd
+- > ![alt text](Images/lauren_default_group.PNG)
+
+Here see that lauren has UID = 1011 and GUID = 1013
+
+- Now, we will see how it has been managed inside the group folder.
+- > cat /etc/group
+- > ![alt text](Images/lauren_default_group_created.PNG)
+- that is inside the group folder the 1013 belongs to `lauren` (own ownership group)
+- And hence whenever we create any resource inside the user account that automatically belongs to respected user and group.
+- For example:
+- > ![alt text](Images/lauren_default_resource.PNG)
+- Here, the file has been created inside the `lauren` home directory.
+- The file (resource) belongs to `lauren's` group. UID = lauren, GUID = lauren.
+- This is the concept of Primary Group.
+
+---
+
+### The Concept of Secondary Group
+
+- Multiple membership allowed.
+- Stored in /etc/group
+- This allows us to give this user fine-grained access rights to our system.
+- > ![alt text](Images/lauren_secondary_group.PNG)
+- See here, the user `lauren` belongs to the secondary group called `docker`.
+- We can list a user's group by the following command:
+- groups [username]
+- ![alt text](Images/user_groups.PNG)
+- See here, the lauren belongs to two groups: `primary: lauren` and `secondary: docker`.
+- The user swami belongs to many secondary groups: `primary: swami` and `secondary: adm cdrom sudo dip plugdev users docker and ollama`.
+- > ![alt text](Images/multiple_user_group.PNG)
+
+---
+
+## `Existing groups in Ubuntu`
+
+- There are quite a few existing group in Ubuntu.
+- A selection of the most important groups:
+  - 1. `root` : The superuser group with administrative privileges, allowing complete control over the system.
+  - 2. `sudo` / `wheel`: Members can use `sudo`. May also be called `wheel`.
+  - 3. `adm` : Allows members to read log files. (tail /var/log/syslog)
+  - > ![alt text](Images/adm_group_diff.PNG)
+  - > see the difference here as `lauren user does not belongs to adm` group and `swami user belongs to adm group and allowed for the syslogs`.
+  - 4. `lpadmin` : Allows members may manage printers and printers queue. May also be called `lp`
+  - 5. `www-data` : A group for web-server processes (such as Apache or Nginx), gives access to web content.
+  - 6. `plugdev` : Allows this user to manage pluggable devices (USB disks, external HDDs)
